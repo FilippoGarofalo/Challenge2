@@ -26,9 +26,7 @@ const arpeggioPattern = new Tone.Pattern(
 // Piano setup
 const piano = new Tone.Sampler({
     urls: {
-        A1: "A1.mp3",
         C4: "C4.mp3",
-        E5: "E5.mp3",
     },
     baseUrl: "https://tonejs.github.io/audio/salamander/",
     onload: () => {
@@ -39,8 +37,10 @@ const piano = new Tone.Sampler({
 // Piano riff
 const pianoRiff = [
     { time: "0:0:0", chord: ["D4", "G4", "Bb4"] }, // First chord
+    { time: "0:0:2", chord: ["D4", "G4", "Bb4"] }, // First chord
     { time: "0:2:0", chord: ["D4", "F4", "A4"] },  // Second chord
-    { time: "1:0:0", chord: ["Bb3", "D4", "G4"] }, // Third chord
+    { time: "0:2:2", chord: ["D4", "F4", "A4"] },  // Second chord
+    { time: "0:4:0", chord: ["Bb3", "D4", "G4"] }, // Third chord
 ];
 
 // Create a Tone.Part to play the piano riff
@@ -53,7 +53,7 @@ pianoPart.loopEnd = "2m"; // 2-measure loop
 // Kick drum setup
 const kick = new Tone.MembraneSynth().toDestination();
 const kickPart = new Tone.Loop((time) => {
-    kick.triggerAttackRelease("C2", "8n", time); // Kick drum
+    kick.triggerAttackRelease(55, "8n", time); // Kick drum
 }, "4n");
 
 // Hi-hat setup
@@ -79,9 +79,10 @@ const snarePart = new Tone.Loop((time) => {
 // Schedule Intro Section (Kick and Arpeggiator)
 Tone.Transport.schedule(() => {
     console.log("Intro started");
-    arpeggioPattern.start(0); // Start arpeggiator
+    //arpeggioPattern.start(0); // Start arpeggiator
     kickPart.start(0); // Start kick drum
     snarePart.start(0);
+    pianoPart.start(0);
 }, "0:0:0");
 
 // Transition out of Intro
