@@ -1,0 +1,61 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS resource fork files
+._*
+
+# macOS Finder settings
+Icon?
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.metadata_never_index
+
+# macOS specific folders
+.fseventsd
+.TemporaryItems
+.apdisk
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+ehthumbs.db
+
+# Windows specific folders
+System Volume Information/
+
+# General IDE or editor files
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+*.old
+*.log
+
+# Temporary files
+*.temp
+*.cache
+
+# Ignore node_modules (if using Node.js)
+node_modules/
+
+# Ignore Python virtual environments (if using Python)
+venv/
+__pycache__/
+
+# Ignore compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.o
+
+# Git-specific files
+.git/
+*.orig
+*.lock
