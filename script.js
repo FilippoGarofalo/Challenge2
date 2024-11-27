@@ -75,6 +75,17 @@ const snarePart = new Tone.Loop((time) => {
     snare.triggerAttackRelease("16n", time); // Snare
 }, "2n"); // Snare plays every half measure
 
+// Load the .wav file using Tone.Player
+const fxSound = new Tone.Player("assets/fx.wav", () => {
+    console.log("FX sound loaded");
+}).toDestination(); // Routing to the output (master) destination
+
+// Create a part to trigger the FX sound at a specific time (once)
+const fxPart = new Tone.Part((time) => {
+    fxSound.start(time); // Play the FX sound once at the specified time
+}, [
+    { time: "0:0:0" },  // Schedule to play once at 1:4:0 (adjust time as needed)
+]);
 
 // Schedule Intro Section (Kick and Arpeggiator)
 Tone.Transport.schedule(() => {
@@ -83,6 +94,8 @@ Tone.Transport.schedule(() => {
     kickPart.start(0); // Start kick drum
     snarePart.start(0);
     pianoPart.start(0);
+    hihatPart.start(0);
+    fxPart.start(0);
 }, "0:0:0");
 
 // Transition out of Intro
